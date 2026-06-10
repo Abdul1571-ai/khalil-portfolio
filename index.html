@@ -1,0 +1,1438 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Khalil Abdullahi Muhammad — Full-Stack Developer & Engineer based in Abuja, Nigeria. Specializing in web systems, management platforms, and document management solutions." />
+  <meta name="keywords" content="Khalil Abdullahi Muhammad, web developer, frontend developer, Nigeria, Abuja, React, PHP, DMS" />
+  <meta property="og:title" content="Khalil Abdullahi Muhammad | Developer Portfolio" />
+  <meta property="og:description" content="Full-Stack Developer & Engineer building modern web systems and management platforms." />
+  <title>Khalil Abdullahi Muhammad | Developer Portfolio</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- React + ReactDOM + Babel -->
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Space Grotesk', 'sans-serif'],
+            body: ['Inter', 'sans-serif'],
+            mono: ['Fira Code', 'monospace'],
+          },
+          colors: {
+            navy: {
+              950: '#04080F',
+              900: '#0A0F1E',
+              800: '#111827',
+              700: '#1E2A45',
+              600: '#2A3A5C',
+            },
+            indigo: {
+              400: '#818CF8',
+              500: '#6366F1',
+              600: '#4F46E5',
+            },
+            cyan: {
+              400: '#22D3EE',
+              500: '#06B6D4',
+            },
+          },
+          animation: {
+            'float': 'float 6s ease-in-out infinite',
+            'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'spin-slow': 'spin 20s linear infinite',
+            'fade-in': 'fadeIn 0.6s ease-out forwards',
+            'slide-up': 'slideUp 0.6s ease-out forwards',
+            'glow': 'glow 2s ease-in-out infinite alternate',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-20px)' },
+            },
+            fadeIn: {
+              from: { opacity: '0', transform: 'translateY(30px)' },
+              to: { opacity: '1', transform: 'translateY(0)' },
+            },
+            slideUp: {
+              from: { opacity: '0', transform: 'translateY(60px)' },
+              to: { opacity: '1', transform: 'translateY(0)' },
+            },
+            glow: {
+              from: { boxShadow: '0 0 20px rgba(99, 102, 241, 0.4)' },
+              to: { boxShadow: '0 0 40px rgba(99, 102, 241, 0.8), 0 0 80px rgba(6, 182, 212, 0.3)' },
+            },
+          },
+        }
+      }
+    };
+  </script>
+
+  <style>
+    * { box-sizing: border-box; }
+
+    :root {
+      --indigo: #6366F1;
+      --cyan: #06B6D4;
+      --navy-900: #0A0F1E;
+      --navy-800: #111827;
+      --navy-700: #1E2A45;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0A0F1E;
+      color: #F8FAFC;
+      overflow-x: hidden;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    body.light {
+      background: #F8FAFC;
+      color: #0A0F1E;
+    }
+
+    /* ─── Scrollbar ─── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #0A0F1E; }
+    ::-webkit-scrollbar-thumb { background: #6366F1; border-radius: 3px; }
+
+    /* ─── Gradient text ─── */
+    .gradient-text {
+      background: linear-gradient(135deg, #6366F1 0%, #06B6D4 50%, #818CF8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .gradient-text-warm {
+      background: linear-gradient(135deg, #F59E0B 0%, #EF4444 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ─── Glass card ─── */
+    .glass-card {
+      background: rgba(30, 42, 69, 0.6);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(99, 102, 241, 0.15);
+    }
+
+    body.light .glass-card {
+      background: rgba(255, 255, 255, 0.8);
+      border: 1px solid rgba(99, 102, 241, 0.2);
+    }
+
+    /* ─── Grid background ─── */
+    .grid-bg {
+      background-image:
+        linear-gradient(rgba(99, 102, 241, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(99, 102, 241, 0.05) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+
+    /* ─── Glow effects ─── */
+    .glow-indigo { box-shadow: 0 0 30px rgba(99, 102, 241, 0.4); }
+    .glow-cyan { box-shadow: 0 0 30px rgba(6, 182, 212, 0.4); }
+    .text-glow { text-shadow: 0 0 30px rgba(99, 102, 241, 0.6); }
+
+    /* ─── Orbit ring ─── */
+    .orbit-ring {
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid transparent;
+      animation: orbit-spin linear infinite;
+    }
+
+    @keyframes orbit-spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    /* ─── Typewriter ─── */
+    .typewriter-cursor::after {
+      content: '|';
+      color: #06B6D4;
+      animation: blink 1s step-end infinite;
+      margin-left: 2px;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    /* ─── Skill bar ─── */
+    .skill-bar-fill {
+      background: linear-gradient(90deg, #6366F1, #06B6D4);
+      border-radius: 9999px;
+      transition: width 1.5s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    /* ─── Nav active ─── */
+    .nav-link.active {
+      color: #6366F1;
+    }
+
+    .nav-link.active::after {
+      content: '';
+      display: block;
+      height: 2px;
+      background: linear-gradient(90deg, #6366F1, #06B6D4);
+      border-radius: 1px;
+      margin-top: 2px;
+    }
+
+    /* ─── Section transitions ─── */
+    .section-fade {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .section-fade.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ─── Project card ─── */
+    .project-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .project-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 60px rgba(99, 102, 241, 0.25);
+    }
+
+    /* ─── Skill tag ─── */
+    .skill-tag {
+      transition: all 0.25s ease;
+    }
+    .skill-tag:hover {
+      background: rgba(99, 102, 241, 0.25);
+      border-color: #6366F1;
+      transform: scale(1.05);
+    }
+
+    /* ─── Button ─── */
+    .btn-primary {
+      background: linear-gradient(135deg, #6366F1, #4F46E5);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 100%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+      transition: left 0.4s ease;
+    }
+    .btn-primary:hover::before { left: 100%; }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(99,102,241,0.5); }
+
+    .btn-outline {
+      border: 1px solid rgba(99, 102, 241, 0.5);
+      transition: all 0.3s ease;
+    }
+    .btn-outline:hover {
+      background: rgba(99, 102, 241, 0.15);
+      border-color: #6366F1;
+      transform: translateY(-2px);
+    }
+
+    /* ─── Light mode overrides ─── */
+    body.light { --nav-bg: rgba(248, 250, 252, 0.95); }
+    body:not(.light) { --nav-bg: rgba(10, 15, 30, 0.95); }
+    #main-nav { background: var(--nav-bg); }
+    body.light #main-nav { border-bottom: 1px solid rgba(99,102,241,0.15); }
+
+    body.light .text-slate-300 { color: #475569; }
+    body.light .text-slate-400 { color: #64748b; }
+    body.light .text-slate-500 { color: #94a3b8; }
+    body.light .text-white { color: #0A0F1E; }
+    body.light .text-gray-300 { color: #374151; }
+
+    /* ─── Loader ─── */
+    #loader {
+      position: fixed; inset: 0;
+      background: #0A0F1E;
+      display: flex; align-items: center; justify-content: center;
+      z-index: 9999;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+    #loader.hidden { opacity: 0; visibility: hidden; }
+
+    .loader-ring {
+      width: 60px; height: 60px;
+      border-radius: 50%;
+      border: 3px solid rgba(99,102,241,0.2);
+      border-top-color: #6366F1;
+      border-right-color: #06B6D4;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ─── Responsive ─── */
+    @media (max-width: 640px) {
+      .hero-title { font-size: 2.4rem !important; }
+      .orbit-outer { width: 280px !important; height: 280px !important; }
+    }
+  </style>
+</head>
+
+<body class="font-body">
+
+  <!-- ══════════ LOADER ══════════ -->
+  <div id="loader">
+    <div style="text-align:center">
+      <div class="loader-ring" style="margin: 0 auto 16px;"></div>
+      <p style="font-family: 'Fira Code', monospace; color: #6366F1; font-size: 0.85rem; letter-spacing: 0.05em;">initializing...</p>
+    </div>
+  </div>
+
+  <!-- ══════════ ROOT ══════════ -->
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { useState, useEffect, useRef, useCallback } = React;
+
+    /* ─────────────────────────────────────────
+       DATA
+    ───────────────────────────────────────── */
+
+    const NAV_LINKS = ['Home', 'About', 'Skills', 'Projects', 'Experience', 'Contact'];
+
+    const SKILLS = [
+      { name: 'HTML5', icon: '🌐', level: 90, cat: 'Frontend' },
+      { name: 'CSS3', icon: '🎨', level: 85, cat: 'Frontend' },
+      { name: 'JavaScript', icon: '⚡', level: 80, cat: 'Frontend' },
+      { name: 'React.js', icon: '⚛️', level: 75, cat: 'Frontend' },
+      { name: 'Tailwind CSS', icon: '💨', level: 80, cat: 'Frontend' },
+      { name: 'Responsive Design', icon: '📱', level: 88, cat: 'Frontend' },
+      { name: 'PHP', icon: '🐘', level: 78, cat: 'Backend' },
+      { name: 'MySQL', icon: '🗄️', level: 80, cat: 'Backend' },
+      { name: 'Node.js', icon: '🟢', level: 60, cat: 'Backend' },
+      { name: 'Express.js', icon: '🚂', level: 58, cat: 'Backend' },
+      { name: 'Database Design', icon: '🏗️', level: 75, cat: 'Backend' },
+      { name: 'Git & GitHub', icon: '🔀', level: 78, cat: 'Tools' },
+      { name: 'DMS / OpenKM', icon: '📂', level: 70, cat: 'Tools' },
+      { name: 'UI/UX Basics', icon: '✏️', level: 72, cat: 'Tools' },
+      { name: 'Problem Solving', icon: '🧠', level: 88, cat: 'Tools' },
+    ];
+
+    const PROJECTS = [
+      {
+        id: 1,
+        title: 'Online Tailoring Management System',
+        emoji: '✂️',
+        role: 'Project Leader & Lead Developer',
+        status: 'Completed',
+        color: 'from-indigo-500 to-purple-600',
+        accent: '#6366F1',
+        stack: ['HTML', 'CSS', 'JavaScript', 'PHP', 'MySQL'],
+        features: [
+          'Customer profile & order management',
+          'Measurement recording & tracking',
+          'Payment processing & history',
+          'Admin dashboard with analytics',
+          'Responsive mobile interface',
+          'Order status notifications',
+        ],
+        desc: 'A full-featured web application for tailoring businesses to manage customers, orders, measurements, and payments — replacing manual record-keeping with a streamlined digital workflow.',
+      },
+      {
+        id: 2,
+        title: 'School Management System',
+        emoji: '🏫',
+        role: 'Developer',
+        status: 'Completed',
+        color: 'from-cyan-500 to-blue-600',
+        accent: '#06B6D4',
+        stack: ['HTML', 'CSS', 'JavaScript', 'MS Access'],
+        features: [
+          'Student enrollment & records',
+          'Daily attendance tracking',
+          'Result & grade management',
+          'Staff & teacher profiles',
+          'Report generation',
+          'Admin control panel',
+        ],
+        desc: 'A comprehensive school administration platform covering student lifecycle management from enrollment to result computation, with dedicated dashboards for staff and admin roles.',
+      },
+      {
+        id: 3,
+        title: 'Student Attendance System',
+        emoji: '📋',
+        role: 'Developer',
+        status: 'Completed',
+        color: 'from-emerald-500 to-teal-600',
+        accent: '#10B981',
+        stack: ['PHP', 'MySQL'],
+        features: [
+          'Secure login authentication',
+          'Per-class attendance marking',
+          'Attendance report generation',
+          'Student attendance summaries',
+          'Date-range filtering',
+        ],
+        desc: 'A focused attendance tracking system built with PHP and MySQL, providing secure login, daily marking, and exportable reports for academic institutions.',
+      },
+      {
+        id: 4,
+        title: 'Document Management System (DMS)',
+        emoji: '📂',
+        role: 'Developer / DMS Specialist',
+        status: 'In Progress',
+        color: 'from-orange-500 to-red-600',
+        accent: '#F59E0B',
+        stack: ['OpenKM', 'Java', 'REST API', 'Web UI'],
+        features: [
+          'Document upload & versioning',
+          'Role-based access control',
+          'Metadata tagging & search',
+          'Workflow & approval routing',
+          'Audit trail & logging',
+          'Integration with web apps',
+        ],
+        desc: 'Hands-on experience with OpenKM enterprise DMS — configuring document repositories, access control policies, and building integrations for business document workflows.',
+      },
+    ];
+
+    const ROLES = [
+      'Frontend Developer',
+      'Web System Developer',
+      'DMS Developer',
+      'Full-Stack Engineer',
+      'Problem Solver',
+    ];
+
+    /* ─────────────────────────────────────────
+       HOOKS
+    ───────────────────────────────────────── */
+
+    function useTypewriter(words, speed = 80, pause = 2000) {
+      const [display, setDisplay] = useState('');
+      const [wordIdx, setWordIdx] = useState(0);
+      const [charIdx, setCharIdx] = useState(0);
+      const [deleting, setDeleting] = useState(false);
+
+      useEffect(() => {
+        const current = words[wordIdx];
+        let timer;
+        if (!deleting && charIdx < current.length) {
+          timer = setTimeout(() => setCharIdx(c => c + 1), speed);
+        } else if (!deleting && charIdx === current.length) {
+          timer = setTimeout(() => setDeleting(true), pause);
+        } else if (deleting && charIdx > 0) {
+          timer = setTimeout(() => setCharIdx(c => c - 1), speed / 2);
+        } else if (deleting && charIdx === 0) {
+          setDeleting(false);
+          setWordIdx(w => (w + 1) % words.length);
+        }
+        return () => clearTimeout(timer);
+      }, [charIdx, deleting, wordIdx, words, speed, pause]);
+
+      useEffect(() => {
+        setDisplay(words[wordIdx].slice(0, charIdx));
+      }, [charIdx, wordIdx, words]);
+
+      return display;
+    }
+
+    function useIntersectionObserver(threshold = 0.15) {
+      const ref = useRef(null);
+      const [visible, setVisible] = useState(false);
+
+      useEffect(() => {
+        const el = ref.current;
+        if (!el) return;
+        const obs = new IntersectionObserver(
+          ([entry]) => { if (entry.isIntersecting) { setVisible(true); obs.disconnect(); } },
+          { threshold }
+        );
+        obs.observe(el);
+        return () => obs.disconnect();
+      }, [threshold]);
+
+      return [ref, visible];
+    }
+
+    function useActiveSection() {
+      const [active, setActive] = useState('Home');
+      useEffect(() => {
+        const sections = NAV_LINKS.map(n => document.getElementById(n.toLowerCase()));
+        const obs = new IntersectionObserver(
+          entries => {
+            entries.forEach(e => {
+              if (e.isIntersecting) setActive(e.target.id.charAt(0).toUpperCase() + e.target.id.slice(1));
+            });
+          },
+          { threshold: 0.4 }
+        );
+        sections.forEach(s => s && obs.observe(s));
+        return () => obs.disconnect();
+      }, []);
+      return active;
+    }
+
+    /* ─────────────────────────────────────────
+       COMPONENTS
+    ───────────────────────────────────────── */
+
+    /* ── Animated Section Wrapper ── */
+    function FadeSection({ children, className = '', delay = 0 }) {
+      const [ref, visible] = useIntersectionObserver();
+      return (
+        <div
+          ref={ref}
+          className={`section-fade ${visible ? 'visible' : ''} ${className}`}
+          style={{ transitionDelay: `${delay}ms` }}
+        >
+          {children}
+        </div>
+      );
+    }
+
+    /* ── Navbar ── */
+    function Navbar({ dark, setDark }) {
+      const active = useActiveSection();
+      const [menuOpen, setMenuOpen] = useState(false);
+      const [scrolled, setScrolled] = useState(false);
+
+      useEffect(() => {
+        const onScroll = () => setScrolled(window.scrollY > 40);
+        window.addEventListener('scroll', onScroll);
+        return () => window.removeEventListener('scroll', onScroll);
+      }, []);
+
+      const scrollTo = (id) => {
+        document.getElementById(id.toLowerCase())?.scrollIntoView({ behavior: 'smooth' });
+        setMenuOpen(false);
+      };
+
+      return (
+        <nav
+          id="main-nav"
+          className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${scrolled ? 'shadow-lg shadow-black/30' : ''}`}
+          style={{ backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)' }}
+        >
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex items-center justify-between h-16">
+              {/* Logo */}
+              <button onClick={() => scrollTo('home')} className="font-display font-bold text-lg tracking-tight">
+                <span className="gradient-text">KAM</span>
+                <span className="text-slate-400 font-mono text-sm ml-1">{'</>'}</span>
+              </button>
+
+              {/* Desktop links */}
+              <div className="hidden md:flex items-center gap-1">
+                {NAV_LINKS.map(link => (
+                  <button
+                    key={link}
+                    onClick={() => scrollTo(link)}
+                    className={`nav-link px-3 py-1.5 rounded-md font-body text-sm font-medium transition-colors duration-200 ${
+                      active === link
+                        ? 'text-indigo-400 bg-indigo-500/10 active'
+                        : 'text-slate-400 hover:text-white hover:bg-white/5'
+                    }`}
+                  >
+                    {link}
+                  </button>
+                ))}
+              </div>
+
+              {/* Right controls */}
+              <div className="flex items-center gap-2">
+                {/* Dark/Light toggle */}
+                <button
+                  onClick={() => { setDark(!dark); document.body.classList.toggle('light'); }}
+                  className="p-2 rounded-lg border border-white/10 text-slate-400 hover:text-white hover:border-indigo-500/50 transition-all text-base"
+                  title="Toggle theme"
+                >
+                  {dark ? '☀️' : '🌙'}
+                </button>
+
+                {/* Mobile menu */}
+                <button
+                  className="md:hidden p-2 text-slate-400 hover:text-white"
+                  onClick={() => setMenuOpen(!menuOpen)}
+                >
+                  {menuOpen ? '✕' : '☰'}
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* Mobile menu */}
+          {menuOpen && (
+            <div className="md:hidden glass-card border-t border-white/5 px-4 py-4">
+              {NAV_LINKS.map(link => (
+                <button
+                  key={link}
+                  onClick={() => scrollTo(link)}
+                  className={`block w-full text-left px-3 py-2.5 rounded-lg font-body text-sm font-medium transition-colors mb-1 ${
+                    active === link
+                      ? 'text-indigo-400 bg-indigo-500/15'
+                      : 'text-slate-400 hover:text-white hover:bg-white/5'
+                  }`}
+                >
+                  {link}
+                </button>
+              ))}
+            </div>
+          )}
+        </nav>
+      );
+    }
+
+    /* ── Hero Section ── */
+    function HeroSection() {
+      const role = useTypewriter(ROLES, 75, 2200);
+      const canvasRef = useRef(null);
+
+      // Particle canvas
+      useEffect(() => {
+        const canvas = canvasRef.current;
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        let raf;
+        let particles = [];
+
+        const resize = () => {
+          canvas.width = canvas.offsetWidth;
+          canvas.height = canvas.offsetHeight;
+        };
+        resize();
+        window.addEventListener('resize', resize);
+
+        const rand = (min, max) => Math.random() * (max - min) + min;
+
+        for (let i = 0; i < 60; i++) {
+          particles.push({
+            x: rand(0, canvas.width),
+            y: rand(0, canvas.height),
+            r: rand(0.5, 2),
+            vx: rand(-0.3, 0.3),
+            vy: rand(-0.3, 0.3),
+            alpha: rand(0.1, 0.6),
+            color: Math.random() > 0.5 ? '#6366F1' : '#06B6D4',
+          });
+        }
+
+        const draw = () => {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          particles.forEach(p => {
+            p.x += p.vx; p.y += p.vy;
+            if (p.x < 0) p.x = canvas.width;
+            if (p.x > canvas.width) p.x = 0;
+            if (p.y < 0) p.y = canvas.height;
+            if (p.y > canvas.height) p.y = 0;
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+            ctx.fillStyle = p.color + Math.floor(p.alpha * 255).toString(16).padStart(2, '0');
+            ctx.fill();
+          });
+          raf = requestAnimationFrame(draw);
+        };
+        draw();
+
+        return () => { cancelAnimationFrame(raf); window.removeEventListener('resize', resize); };
+      }, []);
+
+      return (
+        <section id="home" className="relative min-h-screen flex items-center overflow-hidden grid-bg pt-16">
+          {/* Particle canvas */}
+          <canvas ref={canvasRef} className="absolute inset-0 w-full h-full pointer-events-none opacity-50" />
+
+          {/* Ambient blobs */}
+          <div className="absolute top-20 right-[10%] w-96 h-96 rounded-full bg-indigo-500/10 blur-3xl pointer-events-none" />
+          <div className="absolute bottom-20 left-[5%] w-64 h-64 rounded-full bg-cyan-500/10 blur-3xl pointer-events-none" />
+
+          <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-20">
+            <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+
+              {/* ── Left ── */}
+              <div style={{ animation: 'fadeIn 0.8s ease-out forwards' }}>
+                {/* Badge */}
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass-card border border-indigo-500/30 mb-6">
+                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse-slow" />
+                  <span className="font-mono text-xs text-slate-300 tracking-wide">Available for remote work</span>
+                </div>
+
+                {/* Name */}
+                <h1 className="hero-title font-display font-bold text-5xl sm:text-6xl lg:text-6xl leading-tight mb-2" style={{ fontSize: 'clamp(2.2rem, 5vw, 3.6rem)' }}>
+                  <span className="block text-white">Hi, I'm</span>
+                  <span className="gradient-text text-glow">Khalil Abdullahi</span>
+                  <span className="block text-white">Muhammad</span>
+                </h1>
+
+                {/* Typewriter role */}
+                <div className="mt-4 mb-6 h-8 flex items-center">
+                  <span className="font-mono text-lg sm:text-xl text-cyan-400 typewriter-cursor">{role}</span>
+                </div>
+
+                {/* Bio */}
+                <p className="text-slate-400 text-base sm:text-lg leading-relaxed mb-8 max-w-lg">
+                  Engineer & aspiring full-stack developer from <span className="text-indigo-400 font-medium">Abuja, Nigeria 🇳🇬</span>, passionate about building intelligent web systems, management platforms, and document solutions that solve real business problems.
+                </p>
+
+                {/* CTAs */}
+                <div className="flex flex-wrap gap-3">
+                  <button
+                    onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
+                    className="btn-primary px-5 py-2.5 rounded-xl font-display font-semibold text-white text-sm flex items-center gap-2"
+                  >
+                    <span>🚀</span> View Projects
+                  </button>
+                  <button
+                    onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+                    className="btn-outline px-5 py-2.5 rounded-xl font-display font-semibold text-slate-200 text-sm flex items-center gap-2"
+                  >
+                    <span>💬</span> Contact Me
+                  </button>
+                  <a
+                    href="khalil_cv.pdf" target="_blank" rel="noopener noreferrer"
+                    className="btn-outline px-5 py-2.5 rounded-xl font-display font-semibold text-slate-200 text-sm flex items-center gap-2"
+                    title="Download CV (add your CV link here)"
+                  >
+                    <span>📄</span> Download CV
+                  </a>
+                </div>
+
+                {/* Quick stats */}
+                <div className="mt-10 flex gap-6 pt-6 border-t border-white/5">
+                  {[
+                    { val: '4+', label: 'Projects Built' },
+                    { val: '15+', label: 'Technologies' },
+                    { val: '2+', label: 'Years Learning' },
+                  ].map(({ val, label }) => (
+                    <div key={label}>
+                      <div className="font-display font-bold text-2xl gradient-text">{val}</div>
+                      <div className="text-slate-500 text-xs mt-0.5">{label}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* ── Right: Avatar + Orbit ── */}
+              <div className="flex justify-center lg:justify-end" style={{ animation: 'fadeIn 1s ease-out 0.2s both' }}>
+                <div className="relative flex items-center justify-center orbit-outer" style={{ width: '360px', height: '360px' }}>
+                  {/* Orbit rings */}
+                  <div className="orbit-ring absolute inset-0" style={{
+                    border: '1px dashed rgba(99,102,241,0.3)',
+                    animationDuration: '25s',
+                  }}>
+                    <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-indigo-500 shadow-lg shadow-indigo-500/60" />
+                  </div>
+                  <div className="orbit-ring absolute" style={{
+                    inset: '30px',
+                    border: '1px dashed rgba(6,182,212,0.25)',
+                    animationDuration: '18s',
+                    animationDirection: 'reverse',
+                  }}>
+                    <div className="absolute -bottom-2 right-0 w-3 h-3 rounded-full bg-cyan-400 shadow-lg shadow-cyan-400/60" />
+                  </div>
+
+                  {/* Avatar circle */}
+                  <div className="relative z-10 w-48 h-48 rounded-full flex items-center justify-center"
+                    style={{
+                      background: 'linear-gradient(135deg, rgba(99,102,241,0.2), rgba(6,182,212,0.2))',
+                      border: '2px solid rgba(99,102,241,0.4)',
+                      boxShadow: '0 0 60px rgba(99,102,241,0.3), inset 0 0 40px rgba(6,182,212,0.1)',
+                    }}>
+                    <div className="text-center" style={{ animation: 'float 6s ease-in-out infinite' }}>
+                      <div className="text-6xl mb-2">👨‍💻</div>
+                      <div className="font-mono text-xs text-indigo-400">{'<KAM />'}</div>
+                    </div>
+                  </div>
+
+                  {/* Floating tech badges */}
+                  {[
+                    { label: 'React', top: '5%', left: '5%', delay: '0s' },
+                    { label: 'PHP', top: '5%', right: '5%', delay: '0.5s' },
+                    { label: 'MySQL', bottom: '8%', left: '5%', delay: '1s' },
+                    { label: 'DMS', bottom: '8%', right: '5%', delay: '1.5s' },
+                  ].map(({ label, delay, ...pos }) => (
+                    <div
+                      key={label}
+                      className="absolute font-mono text-xs px-2.5 py-1.5 rounded-lg glass-card border border-indigo-500/20 text-indigo-300"
+                      style={{ ...pos, animation: `float 6s ease-in-out ${delay} infinite` }}
+                    >
+                      {label}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Scroll indicator */}
+          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-slate-500">
+            <span className="font-mono text-xs">scroll</span>
+            <div className="w-px h-8 bg-gradient-to-b from-indigo-500 to-transparent" />
+          </div>
+        </section>
+      );
+    }
+
+    /* ── About Section ── */
+    function AboutSection() {
+      const facts = [
+        { icon: '🎓', title: 'Engineering Background', desc: 'Grounded in engineering principles — analytical thinking, systematic problem solving, and precision in design.' },
+        { icon: '🏗️', title: 'Systems Builder', desc: 'Passionate about building web systems and management platforms that replace manual workflows with efficient digital solutions.' },
+        { icon: '📂', title: 'DMS Specialist', desc: 'Hands-on experience with Document Management Systems, particularly OpenKM, for enterprise document workflow automation.' },
+        { icon: '⚡', title: 'Fast Learner', desc: 'Self-driven learner who picks up new technologies and frameworks rapidly, always expanding my skill set.' },
+        { icon: '🌍', title: 'Remote-Ready', desc: 'Open to remote opportunities worldwide. Based in Abuja, Nigeria — connected to the global developer community.' },
+        { icon: '🚀', title: 'Real-World Focus', desc: 'Interested in projects with tangible impact — business tools, management systems, and productivity platforms.' },
+      ];
+
+      return (
+        <section id="about" className="py-24 relative">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <FadeSection>
+              <div className="flex items-center gap-3 mb-3">
+                <span className="font-mono text-indigo-400 text-sm">01.</span>
+                <h2 className="font-display font-bold text-3xl sm:text-4xl">About Me</h2>
+                <div className="flex-1 h-px bg-gradient-to-r from-indigo-500/30 to-transparent ml-2" />
+              </div>
+              <p className="text-slate-400 text-base ml-10 mb-12">The person behind the code</p>
+            </FadeSection>
+
+            <div className="grid lg:grid-cols-5 gap-10 items-start">
+              {/* Bio column */}
+              <FadeSection className="lg:col-span-2" delay={100}>
+                <div className="glass-card rounded-2xl p-6 sticky top-24">
+                  {/* Profile visual */}
+                  <div className="relative mb-6">
+                    <div className="w-24 h-24 rounded-2xl flex items-center justify-center text-4xl mx-auto"
+                      style={{ background: 'linear-gradient(135deg, #6366F1, #06B6D4)', boxShadow: '0 8px 32px rgba(99,102,241,0.4)' }}>
+                      👨‍💻
+                    </div>
+                    <div className="absolute -bottom-2 -right-2 w-6 h-6 rounded-full bg-emerald-400 border-2 border-navy-900 flex items-center justify-center">
+                      <span className="text-xs">✓</span>
+                    </div>
+                  </div>
+
+                  <h3 className="font-display font-bold text-xl text-center mb-1">Khalil Abdullahi Muhammad</h3>
+                  <p className="text-center text-indigo-400 font-mono text-sm mb-4">Full-Stack Developer</p>
+
+                  <div className="space-y-2.5 text-sm">
+                    {[
+                      { icon: '📍', label: 'Location', val: 'Abuja, Nigeria' },
+                      { icon: '🎓', label: 'Background', val: 'Engineering' },
+                      { icon: '💼', label: 'Status', val: 'Open to Opportunities' },
+                      { icon: '🌐', label: 'Availability', val: 'Remote / Freelance' },
+                    ].map(({ icon, label, val }) => (
+                      <div key={label} className="flex items-center gap-3 p-2.5 rounded-lg bg-white/3 border border-white/5">
+                        <span>{icon}</span>
+                        <span className="text-slate-500 text-xs w-20">{label}</span>
+                        <span className="text-slate-300 font-medium text-xs">{val}</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="mt-5 pt-5 border-t border-white/5">
+                    <p className="text-xs text-slate-500 mb-3 font-mono">interests()</p>
+                    <div className="flex flex-wrap gap-1.5">
+                      {['Web Application', 'Web Maintenance', 'Testing Apps', 'Open Source', 'UI/UX', 'Databases'].map(tag => (
+                        <span key={tag} className="skill-tag px-2.5 py-1 rounded-full text-xs bg-indigo-500/10 border border-indigo-500/20 text-indigo-300">{tag}</span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </FadeSection>
+
+              {/* Facts grid */}
+              <div className="lg:col-span-3 grid sm:grid-cols-2 gap-4">
+                {facts.map(({ icon, title, desc }, i) => (
+                  <FadeSection key={title} delay={150 + i * 80}>
+                    <div className="glass-card rounded-xl p-5 h-full project-card border border-white/5 hover:border-indigo-500/30 transition-colors">
+                      <div className="w-10 h-10 rounded-xl flex items-center justify-center text-xl mb-3"
+                        style={{ background: 'rgba(99,102,241,0.15)' }}>
+                        {icon}
+                      </div>
+                      <h4 className="font-display font-semibold text-base mb-1.5">{title}</h4>
+                      <p className="text-slate-400 text-sm leading-relaxed">{desc}</p>
+                    </div>
+                  </FadeSection>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    /* ── Skills Section ── */
+    function SkillsSection() {
+      const [activeTab, setActiveTab] = useState('All');
+      const categories = ['All', 'Frontend', 'Backend', 'Tools'];
+      const [barsVisible, setBarsVisible] = useState(false);
+      const sectionRef = useRef(null);
+
+      useEffect(() => {
+        const obs = new IntersectionObserver(
+          ([e]) => { if (e.isIntersecting) setBarsVisible(true); },
+          { threshold: 0.2 }
+        );
+        if (sectionRef.current) obs.observe(sectionRef.current);
+        return () => obs.disconnect();
+      }, []);
+
+      const filtered = activeTab === 'All' ? SKILLS : SKILLS.filter(s => s.cat === activeTab);
+
+      return (
+        <section id="skills" className="py-24 relative" ref={sectionRef}
+          style={{ background: 'linear-gradient(180deg, transparent, rgba(99,102,241,0.03), transparent)' }}>
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <FadeSection>
+              <div className="flex items-center gap-3 mb-3">
+                <span className="font-mono text-cyan-400 text-sm">02.</span>
+                <h2 className="font-display font-bold text-3xl sm:text-4xl">Skills & Technologies</h2>
+                <div className="flex-1 h-px bg-gradient-to-r from-cyan-500/30 to-transparent ml-2" />
+              </div>
+              <p className="text-slate-400 text-base ml-10 mb-8">Tools I use to build great things</p>
+
+              {/* Category tabs */}
+              <div className="flex gap-2 mb-10 ml-10 flex-wrap">
+                {categories.map(cat => (
+                  <button
+                    key={cat}
+                    onClick={() => setActiveTab(cat)}
+                    className={`px-4 py-1.5 rounded-lg font-mono text-sm transition-all ${
+                      activeTab === cat
+                        ? 'bg-indigo-500 text-white shadow-lg shadow-indigo-500/30'
+                        : 'glass-card text-slate-400 hover:text-white border border-white/5'
+                    }`}
+                  >
+                    {cat}
+                  </button>
+                ))}
+              </div>
+            </FadeSection>
+
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {filtered.map((skill, i) => (
+                <FadeSection key={skill.name} delay={i * 60}>
+                  <div className="glass-card rounded-xl p-5 project-card border border-white/5 hover:border-indigo-500/20 transition-colors">
+                    <div className="flex items-center gap-3 mb-3">
+                      <span className="text-2xl">{skill.icon}</span>
+                      <div className="flex-1">
+                        <div className="flex justify-between items-center mb-1">
+                          <span className="font-display font-semibold text-sm">{skill.name}</span>
+                          <span className="font-mono text-xs text-indigo-400">{skill.level}%</span>
+                        </div>
+                        <div className="h-1.5 bg-white/5 rounded-full overflow-hidden">
+                          <div
+                            className="skill-bar-fill h-full"
+                            style={{ width: barsVisible ? `${skill.level}%` : '0%' }}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <span className={`inline-block px-2 py-0.5 rounded-full text-xs font-mono border ${
+                      skill.cat === 'Frontend' ? 'bg-indigo-500/10 border-indigo-500/20 text-indigo-400' :
+                      skill.cat === 'Backend' ? 'bg-cyan-500/10 border-cyan-500/20 text-cyan-400' :
+                      'bg-purple-500/10 border-purple-500/20 text-purple-400'
+                    }`}>
+                      {skill.cat}
+                    </span>
+                  </div>
+                </FadeSection>
+              ))}
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    /* ── Projects Section ── */
+    function ProjectsSection() {
+      const [expanded, setExpanded] = useState(null);
+
+      return (
+        <section id="projects" className="py-24 relative">
+          <div className="absolute top-40 right-0 w-72 h-72 rounded-full bg-cyan-500/5 blur-3xl pointer-events-none" />
+
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <FadeSection>
+              <div className="flex items-center gap-3 mb-3">
+                <span className="font-mono text-indigo-400 text-sm">03.</span>
+                <h2 className="font-display font-bold text-3xl sm:text-4xl">Projects</h2>
+                <div className="flex-1 h-px bg-gradient-to-r from-indigo-500/30 to-transparent ml-2" />
+              </div>
+              <p className="text-slate-400 text-base ml-10 mb-12">Things I've built and shipped</p>
+            </FadeSection>
+
+            <div className="grid md:grid-cols-2 gap-6">
+              {PROJECTS.map((proj, i) => (
+                <FadeSection key={proj.id} delay={i * 100}>
+                  <div
+                    className="glass-card rounded-2xl overflow-hidden project-card border border-white/5 hover:border-opacity-30 cursor-pointer transition-all"
+                    style={{ '--hover-color': proj.accent }}
+                    onClick={() => setExpanded(expanded === proj.id ? null : proj.id)}
+                  >
+                    {/* Card header */}
+                    <div className={`h-2 bg-gradient-to-r ${proj.color}`} />
+
+                    <div className="p-6">
+                      {/* Header row */}
+                      <div className="flex justify-between items-start mb-4">
+                        <div className="flex items-center gap-3">
+                          <div className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl"
+                            style={{ background: `${proj.accent}20`, border: `1px solid ${proj.accent}30` }}>
+                            {proj.emoji}
+                          </div>
+                          <div>
+                            <span className={`inline-block px-2 py-0.5 rounded-full text-xs font-mono mb-1 ${
+                              proj.status === 'Completed'
+                                ? 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/20'
+                                : 'bg-amber-500/15 text-amber-400 border border-amber-500/20'
+                            }`}>
+                              {proj.status === 'Completed' ? '✓ ' : '⟳ '}{proj.status}
+                            </span>
+                            <div className="text-xs text-slate-500 font-mono">{proj.role}</div>
+                          </div>
+                        </div>
+                        <span className="text-slate-500 text-lg transition-transform" style={{
+                          transform: expanded === proj.id ? 'rotate(180deg)' : 'rotate(0deg)',
+                          transition: 'transform 0.3s ease',
+                        }}>⌄</span>
+                      </div>
+
+                      <h3 className="font-display font-bold text-lg mb-2 leading-snug">{proj.title}</h3>
+                      <p className="text-slate-400 text-sm leading-relaxed mb-4">{proj.desc}</p>
+
+                      {/* Tech stack */}
+                      <div className="flex flex-wrap gap-1.5">
+                        {proj.stack.map(t => (
+                          <span key={t} className="skill-tag px-2 py-0.5 rounded text-xs font-mono border"
+                            style={{ background: `${proj.accent}10`, borderColor: `${proj.accent}25`, color: proj.accent }}>
+                            {t}
+                          </span>
+                        ))}
+                      </div>
+
+                      {/* Expanded features */}
+                      {expanded === proj.id && (
+                        <div className="mt-5 pt-5 border-t border-white/5">
+                          <p className="font-mono text-xs text-slate-500 mb-3">features()</p>
+                          <ul className="grid grid-cols-1 gap-1.5">
+                            {proj.features.map(f => (
+                              <li key={f} className="flex items-start gap-2 text-sm text-slate-300">
+                                <span className="mt-0.5 text-xs" style={{ color: proj.accent }}>▸</span>
+                                {f}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </FadeSection>
+              ))}
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    /* ── Experience / Career Goals Section ── */
+    function ExperienceSection() {
+      const goals = [
+        {
+          icon: '🌐',
+          title: 'Frontend Development',
+          color: '#6366F1',
+          items: ['Build pixel-perfect, accessible UIs', 'Master React ecosystem & modern JS', 'Create reusable component libraries'],
+        },
+        {
+          icon: '📂',
+          title: 'DMS & Business Systems',
+          color: '#06B6D4',
+          items: ['Enterprise document management', 'OpenKM configuration & integration', 'Business process automation'],
+        },
+        {
+          icon: '🏗️',
+          title: 'Scalable Web Apps',
+          color: '#10B981',
+          items: ['Full-stack management platforms', 'REST API design & integration', 'Database architecture & optimization'],
+        },
+        {
+          icon: '🚀',
+          title: 'Remote & Freelance',
+          color: '#F59E0B',
+          items: ['Open to global remote work', 'Freelance project collaboration', 'Contributing to open-source'],
+        },
+      ];
+
+      const timeline = [
+        { year: '2024', event: 'Started programming journey with HTML, CSS & JavaScript' },
+        { year: '2024', event: 'Started Built front-end projects with HTML, CSS & JavaScript such as Calender, Weather app, Calculator etc' },
+        { year: '2025', event: 'Built first full-stack web app: Tailoring Management System (PHP + MySQL)' },
+        { year: '2025', event: 'Developed School Management System & Attendance System' },
+        { year: '2025', event: 'Expanded into React.js, Boostrap & Node.js' },
+        { year: '2026', event: 'developed Online Project Submission System: MySQL + Node.js' },
+        { year: '2026+', event: 'Focused on remote opportunities & professional full-stack work' },
+      ];
+
+      return (
+        <section id="experience" className="py-24 relative"
+          style={{ background: 'linear-gradient(180deg, transparent, rgba(6,182,212,0.02), transparent)' }}>
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <FadeSection>
+              <div className="flex items-center gap-3 mb-3">
+                <span className="font-mono text-cyan-400 text-sm">04.</span>
+                <h2 className="font-display font-bold text-3xl sm:text-4xl">Experience & Goals</h2>
+                <div className="flex-1 h-px bg-gradient-to-r from-cyan-500/30 to-transparent ml-2" />
+              </div>
+              <p className="text-slate-400 text-base ml-10 mb-12">Where I've been and where I'm headed</p>
+            </FadeSection>
+
+            <div className="grid lg:grid-cols-2 gap-12">
+              {/* Goals */}
+              <div>
+                <FadeSection>
+                  <h3 className="font-display font-semibold text-lg mb-6 text-slate-300">Career Objectives</h3>
+                </FadeSection>
+                <div className="grid sm:grid-cols-2 gap-4">
+                  {goals.map(({ icon, title, color, items }, i) => (
+                    <FadeSection key={title} delay={i * 80}>
+                      <div className="glass-card rounded-xl p-5 h-full border border-white/5 project-card">
+                        <div className="w-10 h-10 rounded-xl flex items-center justify-center text-xl mb-3"
+                          style={{ background: `${color}20`, border: `1px solid ${color}25` }}>
+                          {icon}
+                        </div>
+                        <h4 className="font-display font-semibold text-sm mb-2" style={{ color }}>{title}</h4>
+                        <ul className="space-y-1">
+                          {items.map(item => (
+                            <li key={item} className="text-slate-400 text-xs flex items-start gap-1.5">
+                              <span className="mt-0.5 text-xs" style={{ color }}>›</span>
+                              {item}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </FadeSection>
+                  ))}
+                </div>
+              </div>
+
+              {/* Timeline */}
+              <div>
+                <FadeSection delay={100}>
+                  <h3 className="font-display font-semibold text-lg mb-6 text-slate-300">Learning Timeline</h3>
+                </FadeSection>
+                <div className="relative">
+                  {/* Line */}
+                  <div className="absolute left-[52px] top-4 bottom-4 w-px bg-gradient-to-b from-indigo-500/60 via-cyan-500/40 to-transparent" />
+
+                  <div className="space-y-5">
+                    {timeline.map(({ year, event }, i) => (
+                      <FadeSection key={year + event} delay={i * 80}>
+                        <div className="flex items-start gap-4">
+                          <div className="flex-shrink-0 w-[52px] flex justify-end">
+                            <span className="font-mono text-xs text-indigo-400 bg-navy-700 px-1.5 py-0.5 rounded z-10 relative border border-indigo-500/20">
+                              {year}
+                            </span>
+                          </div>
+                          <div className="flex-shrink-0 w-3 h-3 rounded-full mt-1 border-2 border-indigo-500 bg-navy-900" style={{ marginLeft: '-6px' }} />
+                          <p className="text-slate-400 text-sm leading-relaxed pt-0.5">{event}</p>
+                        </div>
+                      </FadeSection>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    /* ── Contact Section ── */
+    function ContactSection() {
+      const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' });
+      const [sent, setSent] = useState(false);
+      const [sending, setSending] = useState(false);
+
+      const handleSubmit = (e) => {
+        e.preventDefault();
+        setSending(true);
+        setTimeout(() => { setSent(true); setSending(false); }, 1500);
+      };
+
+      const contactLinks = [
+        { icon: '📧', label: 'Email', val: 'abdullahimuhammadkhalil5@gmail.com', href: '.com', color: '#6366F1' },
+        { icon: '💼', label: 'LinkedIn', val: 'https://www.linkedin.com/in/khalil-abdullahi-muhammad-9690bb325?', href: 'https://linkedin.com', color: '#0077B5' },
+        { icon: '🐙', label: 'GitHub', val: '/Abdul1571-ai', href: 'https://github.com', color: '#6E5494' },
+        { icon: '📱', label: 'Phone/WhatsApp', val: '+234 703 3203 412', href: 'tel:+234 703 3203 412', color: '#25D366' },
+      ];
+
+      return (
+        <section id="contact" className="py-24 relative">
+          <div className="absolute bottom-20 left-1/4 w-72 h-72 rounded-full bg-indigo-500/5 blur-3xl pointer-events-none" />
+
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <FadeSection>
+              <div className="flex items-center gap-3 mb-3">
+                <span className="font-mono text-indigo-400 text-sm">05.</span>
+                <h2 className="font-display font-bold text-3xl sm:text-4xl">Get In Touch</h2>
+                <div className="flex-1 h-px bg-gradient-to-r from-indigo-500/30 to-transparent ml-2" />
+              </div>
+              <p className="text-slate-400 text-base ml-10 mb-12">Open to opportunities, collaborations, and conversations</p>
+            </FadeSection>
+
+            <div className="grid lg:grid-cols-5 gap-10">
+              {/* Left: contact info */}
+              <FadeSection className="lg:col-span-2 space-y-4" delay={100}>
+                <div className="glass-card rounded-2xl p-6">
+                  <h3 className="font-display font-semibold text-lg mb-2">Let's Connect</h3>
+                  <p className="text-slate-400 text-sm leading-relaxed mb-6">
+                    Whether you have a project in mind, a remote opportunity, or just want to say hi — I'd love to hear from you. I typically respond within 24 hours.
+                  </p>
+
+                  <div className="space-y-3">
+                    {contactLinks.map(({ icon, label, val, href, color }) => (
+                      <a
+                        key={label}
+                        href={href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-3 p-3 rounded-xl border border-white/5 hover:border-opacity-30 transition-all group"
+                        style={{ '--hover-color': color }}
+                        onMouseEnter={e => e.currentTarget.style.borderColor = color + '40'}
+                        onMouseLeave={e => e.currentTarget.style.borderColor = 'rgba(255,255,255,0.05)'}
+                      >
+                        <div className="w-10 h-10 rounded-lg flex items-center justify-center text-xl flex-shrink-0"
+                          style={{ background: color + '15', border: `1px solid ${color}25` }}>
+                          {icon}
+                        </div>
+                        <div>
+                          <div className="text-xs text-slate-500 font-mono">{label}</div>
+                          <div className="text-sm text-slate-300 group-hover:text-white transition-colors">{val}</div>
+                        </div>
+                        <span className="ml-auto text-slate-600 group-hover:text-slate-400 text-sm transition-colors">↗</span>
+                      </a>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="glass-card rounded-2xl p-5 border border-emerald-500/20">
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse-slow" />
+                    <span className="font-mono text-xs text-emerald-400">Available for work</span>
+                  </div>
+                  <p className="text-slate-400 text-xs leading-relaxed">
+                    Currently open to freelance projects, remote positions, and internship opportunities. Specializing in web systems, management platforms, and DMS solutions.
+                  </p>
+                </div>
+              </FadeSection>
+
+              {/* Right: contact form */}
+              <FadeSection className="lg:col-span-3" delay={200}>
+                <div className="glass-card rounded-2xl p-6">
+                  {sent ? (
+                    <div className="text-center py-12">
+                      <div className="text-5xl mb-4">✅</div>
+                      <h3 className="font-display font-bold text-xl mb-2 gradient-text">Message Sent!</h3>
+                      <p className="text-slate-400 text-sm mb-6">Thanks for reaching out. I'll get back to you as soon as possible.</p>
+                      <button
+                        onClick={() => { setSent(false); setForm({ name:'', email:'', subject:'', message:'' }); }}
+                        className="btn-outline px-4 py-2 rounded-lg text-sm text-slate-300"
+                      >
+                        Send Another
+                      </button>
+                    </div>
+                  ) : (
+                    <form onSubmit={handleSubmit} className="space-y-4">
+                      <h3 className="font-display font-semibold text-lg mb-4">Send a Message</h3>
+
+                      <div className="grid sm:grid-cols-2 gap-4">
+                        {[
+                          { name: 'name', label: 'Your Name', placeholder: 'Name', type: 'text' },
+                          { name: 'email', label: 'Email Address', placeholder: 'email@example.com', type: 'email' },
+                        ].map(({ name, label, placeholder, type }) => (
+                          <div key={name}>
+                            <label className="block font-mono text-xs text-slate-500 mb-1.5">{label}</label>
+                            <input
+                              type={type}
+                              required
+                              value={form[name]}
+                              onChange={e => setForm({ ...form, [name]: e.target.value })}
+                              placeholder={placeholder}
+                              className="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-slate-200 text-sm placeholder-slate-600 focus:outline-none focus:border-indigo-500/50 focus:bg-indigo-500/5 transition-colors"
+                            />
+                          </div>
+                        ))}
+                      </div>
+
+                      <div>
+                        <label className="block font-mono text-xs text-slate-500 mb-1.5">Subject</label>
+                        <input
+                          type="text"
+                          required
+                          value={form.subject}
+                          onChange={e => setForm({ ...form, subject: e.target.value })}
+                          placeholder="Project inquiry / Remote opportunity / Hello"
+                          className="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-slate-200 text-sm placeholder-slate-600 focus:outline-none focus:border-indigo-500/50 focus:bg-indigo-500/5 transition-colors"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block font-mono text-xs text-slate-500 mb-1.5">Message</label>
+                        <textarea
+                          required
+                          rows={5}
+                          value={form.message}
+                          onChange={e => setForm({ ...form, message: e.target.value })}
+                          placeholder="Tell me about your project, opportunity, or just say hi..."
+                          className="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-slate-200 text-sm placeholder-slate-600 focus:outline-none focus:border-indigo-500/50 focus:bg-indigo-500/5 transition-colors resize-none"
+                        />
+                      </div>
+
+                      <button
+                        type="submit"
+                        disabled={sending}
+                        className="btn-primary w-full py-3 rounded-xl font-display font-semibold text-white text-sm flex items-center justify-center gap-2"
+                      >
+                        {sending ? (
+                          <>
+                            <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                            Sending...
+                          </>
+                        ) : (
+                          <>
+                            <span>📤</span> Send Message
+                          </>
+                        )}
+                      </button>
+
+                      <p className="text-center text-slate-600 text-xs font-mono mt-2">
+                      </p>
+                    </form>
+                  )}
+                </div>
+              </FadeSection>
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    /* ── Footer ── */
+    function Footer() {
+      return (
+        <footer className="border-t border-white/5 py-10">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
+              <div>
+                <div className="font-display font-bold text-xl mb-1">
+                  <span className="gradient-text">Khalil</span>
+                  <span className="text-slate-500 font-mono text-sm ml-2">{'</>'}</span>
+                </div>
+                <p className="text-slate-500 text-xs">Full-Stack Developer · Abuja, Nigeria</p>
+              </div>
+
+              <div className="flex items-center gap-4">
+                {[
+                  { icon: '📧', href: 'mailto:khalil@example.com', label: 'Email' },
+                  { icon: '💼', href: 'https://linkedin.com', label: 'LinkedIn' },
+                  { icon: '🐙', href: 'https://github.com', label: 'GitHub' },
+                ].map(({ icon, href, label }) => (
+                  <a
+                    key={label}
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title={label}
+                    className="w-9 h-9 rounded-lg glass-card border border-white/5 flex items-center justify-center text-base hover:border-indigo-500/30 transition-all hover:scale-110"
+                  >
+                    {icon}
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            <div className="mt-8 pt-6 border-t border-white/5 flex flex-col sm:flex-row justify-between items-center gap-2 text-slate-600 text-xs">
+              <p>© {new Date().getFullYear()} Khalil Abdullahi Muhammad. All rights reserved.</p>
+              <p className="font-mono">Built with React · Tailwind CSS · ❤️</p>
+            </div>
+          </div>
+        </footer>
+      );
+    }
+
+    /* ── Scroll-to-top button ── */
+    function ScrollTopButton() {
+      const [show, setShow] = useState(false);
+      useEffect(() => {
+        const onScroll = () => setShow(window.scrollY > 500);
+        window.addEventListener('scroll', onScroll);
+        return () => window.removeEventListener('scroll', onScroll);
+      }, []);
+
+      return show ? (
+        <button
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          className="fixed bottom-6 right-6 z-40 w-11 h-11 rounded-xl btn-primary flex items-center justify-center text-white shadow-lg shadow-indigo-500/30 hover:scale-110 transition-all"
+          title="Back to top"
+        >
+          ↑
+        </button>
+      ) : null;
+    }
+
+    /* ─────────────────────────────────────────
+       APP ROOT
+    ───────────────────────────────────────── */
+    function App() {
+      const [dark, setDark] = useState(true);
+
+      // Hide loader
+      useEffect(() => {
+        const loader = document.getElementById('loader');
+        if (loader) setTimeout(() => loader.classList.add('hidden'), 1200);
+      }, []);
+
+      return (
+        <div>
+          <Navbar dark={dark} setDark={setDark} />
+          <main>
+            <HeroSection />
+            <AboutSection />
+            <SkillsSection />
+            <ProjectsSection />
+            <ExperienceSection />
+            <ContactSection />
+          </main>
+          <Footer />
+          <ScrollTopButton />
+        </div>
+      );
+    }
+
+    /* ─── Render ─── */
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  </script>
+</body>
+</html>
